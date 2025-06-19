@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <title>Kanvert Animatsiya</title>
+  <style>
+    body {
+      display: flex;
+      height: 100vh;
+      justify-content: center;
+      align-items: center;
+      background: #f0f0f0;
+      font-family: sans-serif;
+    }
+
+    .envelope {
+      position: relative;
+      width: 200px;
+      height: 120px;
+      background: #c62828;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: transform 0.4s ease;
+    }
+
+    .flap {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 60px;
+      background: #b71c1c;
+      transform-origin: top;
+      transition: transform 0.5s ease;
+      z-index: 2;
+      clip-path: polygon(0 0, 100% 0, 50% 100%);
+    }
+
+    .message {
+      position: absolute;
+      top: 30px;
+      left: 10px;
+      right: 10px;
+      background: white;
+      padding: 10px;
+      border-radius: 5px;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.5s ease;
+      z-index: 1;
+      font-size: 14px;
+      text-align: center;
+    }
+
+    .envelope.open .flap {
+      transform: rotateX(180deg);
+    }
+
+    .envelope.open .message {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+<div class="envelope" onclick="openEnvelope(this)">
+  <div class="flap"></div>
+  <div class="message">
+    shoʻrchi optom tuxum narxlar 30.000 soʻm
+  </div>
+</div>
+
+<script>
+  let opened = false;
+  function openEnvelope(el) {
+    if (!opened) {
+      el.classList.add('open');
+      opened = true;
+    }
+  }
+</script>
+
+</body>
+</html>
